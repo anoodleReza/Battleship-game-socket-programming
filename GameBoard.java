@@ -10,7 +10,7 @@ public class GameBoard {
   // create random boats
   void generateBoats(int num) {
     int curNum = 0;
-    while (curNum <= num) {
+    while (curNum < num) {
       // get random location
       Random random = new Random();
       int posx = random.nextInt(10);
@@ -49,12 +49,5 @@ public class GameBoard {
 
   void matchResult(boolean hasLost){
     //function to display victory or defeat screen
-  }
-
-  // testing
-  public static void main(String[] args) {
-    GameBoard gameBoard = new GameBoard();
-    gameBoard.generateBoats(4);
-    gameBoard.printBoard();
   }
 }
