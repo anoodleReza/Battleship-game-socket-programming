@@ -7,6 +7,7 @@ import java.net.Socket;
 
 public class BattleServer {
 
+    public static int turn = 1;
     public static void main(String[] args) {
         try{
             //establishing connection
@@ -20,7 +21,26 @@ public class BattleServer {
             GameBoard playerBoard = new GameBoard();
             playerBoard.generateBoats(4);
             playerBoard.printBoard();
-            
+
+            /*
+             Game Overview:
+                1. Player 2 prepares for message
+                2. Server starts turn 1. Player 1 selects coordinate
+                3. Player 1 sends message to player 2 with the coordinates
+                4. player 2 receives message and checks if hit, and if there are ships left
+                5. player 1 prepares for message
+                6. player 2 sends message containing hit/miss & win/lose (if applicable)
+                7. repeat previous steps with alternating players until win/lose
+             */
+            while (turn > 0) {
+                //turn 0 = win/lose, turn 1 = player 1, turn 2 = player 2
+                if (turn == 1) {
+                    // send to player 1
+                }else if(turn == 2){
+                    // wait for player 2
+                }
+            }
+
             ss.close();
         }
         catch(Exception e){
