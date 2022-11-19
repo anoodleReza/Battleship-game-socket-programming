@@ -31,11 +31,21 @@ public class BattleServer {
                 5. player 1 prepares for message
                 6. player 2 sends message containing hit/miss & win/lose (if applicable)
                 7. repeat previous steps with alternating players until win/lose
-             */
+             */            
+            
+            BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in)); //get user input
+            PrintWriter out = new PrintWriter(soc.getOutputStream(), true); //output to other player
+            BufferedReader in = new BufferedReader(new InputStreamReader(soc.getInputStream())); //input from other player
+
             while (turn > 0) {
                 //turn 0 = win/lose, turn 1 = player 1, turn 2 = player 2
                 if (turn == 1) {
-                    // send to player 1
+                    // send to player 2
+                    // input coordinate
+                    System.out.println("Enter Coordinates:");
+                    //check if coordinates are valid (A-H 0-9)
+                    String name = userInput.readLine();
+                    out.println(name);
                 }else if(turn == 2){
                     // wait for player 2
                 }
