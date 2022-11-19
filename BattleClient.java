@@ -19,7 +19,11 @@ public class BattleClient {
             GameBoard playerBoard = new GameBoard();
             int boats = 4; //get the number of boats from the server later...
             playerBoard.generateBoats(boats);
+            //print boards
+            System.out.println("\nPlayer Board: ");
             playerBoard.printBoard();
+            System.out.println("\nEnemy Board: ");
+            playerBoard.printEnemyBoard();
 
            /*
              Game Overview:
@@ -39,11 +43,69 @@ public class BattleClient {
             while (turn > 0) {
                 //turn 0 = win/lose, turn 1 = player 1, turn 2 = player 2
                 if (turn == 1) {
-                    // send to player 1
+                                // input coordinate
+                    System.out.println("Enter Coordinates:");
+
+                    // check if coordinates are valid (A-H 0-9)
+                    boolean validInput = false;
+                    String coords = userInput.readLine();
+                    int xcoord = -1, ycoord = -1;
+                    
+                    while (!validInput) {
+                        //2 characters only
+                        if (coords.length() == 2 &&
+                            (coords.charAt(0)>=65 && coords.charAt(0)<=73) &&
+                            (coords.charAt(1)>=48 && coords.charAt(1)<=57))
+                         {
+                            String x = coords.charAt(0) + "";
+                            String y = coords.charAt(1) + "";
+                            xcoord = (int)coords.charAt(0) - 65;
+                                    ycoord = Integer.parseInt(y);
+                                    validInput = true;
+                        }else{
+                            coords = userInput.readLine();
+                        }
+                    }
+
+                    //send coordinates to client
+                    System.out.println("Shooting at: (" + xcoord + "," + ycoord + ")");
+                    out.println(coords);
+
+                    //receive response
+                    String hitMiss = in.readLine();
+                    boolean isHit = true;
+
+                    if (hitMiss.equals("false")) {
+                        isHit = false;
+                    }else if (hitMiss.equals("true")) {
+                        isHit = true;
+                    }
+                    playerBoard.returnHit(xcoord, ycoord, isHit);
+
+                    //print enemy boards again
+                    clearScreen();
+                    System.out.println("\nPlayer Board: ");
+                    playerBoard.printBoard();
+                    System.out.println("\nEnemy Board: ");
+                    playerBoard.printEnemyBoard();
+
+                    //end turn
+                    turn = 2;
                 }else if(turn == 2){
-                    // wait for player 1
-                    String name = in.readLine();
-                    System.out.println("Opposing Enemy is: " + name);
+                    // receive coordinates from player 1
+                    String coords = in.readLine();
+                    //convert string to x,y coordinates
+                    int xcoord = (int)coords.charAt(0) - 65;
+                    int ycoord = Integer.parseInt(coords.charAt(1) + "");
+
+                    System.out.println("Enemy fired at: (" + xcoord + "," + ycoord + ")");
+                    boolean isHit = playerBoard.checkhit(xcoord, ycoord);
+                    
+                    //send to player 1
+                    out.println(isHit);
+
+                    //end turn
+                    turn = 1;
                 }
             }
             soc.close();

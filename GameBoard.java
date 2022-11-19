@@ -2,9 +2,11 @@ import java.util.Random;
 
 public class GameBoard {
   public boolean[][] board;
+  public int[][] eBoard;
 
   public GameBoard() {
     board = new boolean[10][10];
+    eBoard = new int[10][10]; //0=nothing 1=miss 2=hit
   }
 
   // create random boats
@@ -26,10 +28,10 @@ public class GameBoard {
   }
 
   void printBoard() {
-    //print column labels
+    // print column labels
     System.out.println("  0 1 2 3 4 5 6 7 8 9");
     for (int i = 0; i < board.length; i++) {
-      //print row labels
+      // print row labels
       System.out.print((char) ('@' + i + 1) + " ");
       for (int j = 0; j < board.length; j++) {
         if (board[i][j]) {
@@ -42,14 +44,60 @@ public class GameBoard {
     }
   }
 
-  boolean checkhit(int x, int y){
-    //function to check if coordinates are a hit
-    boolean isHit = false;
-    
-    return(isHit);
+  void printEnemyBoard() {
+    // print column labels
+    System.out.println("  0 1 2 3 4 5 6 7 8 9");
+    for (int i = 0; i < board.length; i++) {
+      // print row labels
+      System.out.print((char) ('@' + i + 1) + " ");
+      for (int j = 0; j < board.length; j++) {
+        switch (eBoard[i][j]) {
+          case 0:
+            System.out.print("- ");
+            break;
+          case 1:
+            System.out.print("M ");
+            break;
+          case 2:
+            System.out.print("H ");
+            break;
+
+          default:
+            break;
+        }
+      }
+      System.out.println();
+    }
   }
 
-  void matchResult(boolean hasLost){
-    //function to display victory or defeat screen
+  boolean checkhit(int x, int y) {
+    // function to check if coordinates are a hit
+    boolean isHit = board[x][y];
+    if (isHit){
+      System.out.println("\nYour ship has been Hit");
+    } else {
+      System.out.println("\nYour ship has been Miss");
+    }
+    return (isHit);
+  }
+
+  void returnHit(int x, int y, boolean isHit){
+    if (isHit){
+      eBoard[x][y] = 2;
+    } else {
+      eBoard[x][y] = 1;
+    }
+  }
+
+  void matchResult(boolean hasLost) {
+    // function to display victory or defeat screen
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
+
+    if (hasLost) {
+      System.out.println("\nDefeat: The enemy has sunken all of your ships");
+    } else {
+      System.out.println("\nVictory: You have sunken all enemy ships");
+    }
   }
 }
