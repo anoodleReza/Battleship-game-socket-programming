@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class BattleClient {
 
-  public static int turn = -1;
+  public static int turn = 2;
   public static void main(String[] args) {
     GameBoard playerBoard = new GameBoard();
     boolean winCondition = false;
@@ -29,9 +29,7 @@ public class BattleClient {
       //get numebr of boats
       System.out.println("Waiting for host to set-up game");
       int boatsNumber = Integer.parseInt(in.readLine());
-      System.out.println(boatsNumber);
-      turn = 2;
-
+      
       playerBoard.generateBoats(boatsNumber);
 
       //print boards
@@ -110,7 +108,7 @@ public class BattleClient {
           int xcoord = (int) coords.charAt(0) - 65;
           int ycoord = Integer.parseInt(coords.charAt(1) + "");
 
-          System.out.println("Enemy fired at: (" + xcoord + "," + ycoord + ")");
+          System.out.println("Enemy fired at: (" + coords.charAt(0) + "," + ycoord + ")");
           boolean isHit = playerBoard.checkhit(xcoord, ycoord);
 
           //send to player 1

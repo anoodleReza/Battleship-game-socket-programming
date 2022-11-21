@@ -45,8 +45,6 @@ public class BattleServer {
       System.out.println("\nEnemy Board: ");
       playerBoard.printEnemyBoard();
 
-      
-
       while (turn > 0) {
         // turn 0 = win/lose, turn 1 = player 1, turn 2 = player 2
         if (turn == 1) {
@@ -77,7 +75,7 @@ public class BattleServer {
           out.println(coords);
 
           //receive response
-          String hitMiss = in.readLine();
+          String hitMiss = in .readLine();
           boolean isHit = true;
           clearScreen();
 
@@ -112,13 +110,13 @@ public class BattleServer {
           System.out.println("Waiting for other player...");
 
           // receive coordinates from player 1
-          String coords = in .readLine();
+          String coords = in.readLine();
 
           //convert string to x,y coordinates
           int xcoord = (int) coords.charAt(0) - 65;
           int ycoord = Integer.parseInt(coords.charAt(1) + "");
 
-          System.out.println("Enemy fired at: (" + xcoord + "," + ycoord + ")");
+          System.out.println("Enemy fired at: (" + coords.charAt(0) + "," + ycoord + ")");
           boolean isHit = playerBoard.checkhit(xcoord, ycoord);
 
           //send to player 1
