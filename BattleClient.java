@@ -2,23 +2,30 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Scanner;
+
+import javax.print.DocFlavor.STRING;
 
 public class BattleClient {
 
   public static int turn = 2;
   public static void main(String[] args) {
-    //start game (maybe put this in another function?)
     GameBoard playerBoard = new GameBoard();
     boolean winCondition = false;
+
+    Scanner input = new Scanner(System.in); 
+    System.out.println("Enter the Server IP Address");
+    String ipaddress = input.nextLine();
+    input.close();
 
     try {
       //connect to host
       System.out.println("Client Started");
-      Socket soc = new Socket("localhost", 9806);
+      Socket soc = new Socket(ipaddress, 9806);
       clearScreen();
 
-      int boats = 4; //get the number of boats from the server later...
-      playerBoard.generateBoats(boats);
+      playerBoard.generateBoats(4);
+
       //print boards
       System.out.println("\nPlayer Board: ");
       playerBoard.printBoard();
@@ -88,6 +95,9 @@ public class BattleClient {
             turn = 2;
           }
         } else if (turn == 2) {
+          //send waiting message
+          System.out.println("Waiting for other player...");
+
           // receive coordinates from player 1
           String coords = in .readLine();
 

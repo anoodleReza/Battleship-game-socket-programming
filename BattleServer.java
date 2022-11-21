@@ -3,6 +3,8 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.net.InetAddress;
+
 
 public class BattleServer {
 
@@ -11,6 +13,13 @@ public class BattleServer {
   public static void main(String[] args) {
     // start game (maybe put this in another function?)
     GameBoard playerBoard = new GameBoard();
+
+    InetAddress ip;
+    try {
+      ip = InetAddress.getLocalHost();
+      System.out.println("Your current IP address : " + ip);
+    } catch (Exception e) {
+    }
 
     try {
       // establishing connection
@@ -91,8 +100,12 @@ public class BattleServer {
           }
 
         } else if (turn == 2) {
+          //send waiting message
+          System.out.println("Waiting for other player...");
+
           // receive coordinates from player 1
           String coords = in .readLine();
+
           //convert string to x,y coordinates
           int xcoord = (int) coords.charAt(0) - 65;
           int ycoord = Integer.parseInt(coords.charAt(1) + "");
