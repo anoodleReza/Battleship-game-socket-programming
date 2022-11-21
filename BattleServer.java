@@ -73,7 +73,7 @@ public class BattleServer {
           }
 
           //send coordinates to client
-          System.out.println("Shooting at: (" + xcoord + "," + ycoord + ")");
+          System.out.println("Shooting at: (" + coords.charAt(0) + "," + ycoord + ")");
           out.println(coords);
 
           //receive response
@@ -118,7 +118,7 @@ public class BattleServer {
           int xcoord = (int) coords.charAt(0) - 65;
           int ycoord = Integer.parseInt(coords.charAt(1) + "");
 
-          System.out.println("Enemy fired at: (" + xcoord + "," + ycoord + ")");
+          System.out.println("Enemy fired at: (" + coords.charAt(0) + "," + ycoord + ")");
           boolean isHit = playerBoard.checkhit(xcoord, ycoord);
 
           //send to player 1

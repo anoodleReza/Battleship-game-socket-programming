@@ -14,7 +14,6 @@ public class BattleClient {
     Scanner input = new Scanner(System.in); 
     System.out.println("Enter the Server IP Address");
     String ipaddress = input.nextLine();
-    input.close();
 
     try {
       //connect to host
@@ -67,7 +66,7 @@ public class BattleClient {
           }
 
           //send coordinates to client
-          System.out.println("Shooting at: (" + xcoord + "," + ycoord + ")");
+          System.out.println("Shooting at: (" + coords.charAt(0) + "," + ycoord + ")");
           out.println(coords);
 
           //receive response
@@ -110,7 +109,7 @@ public class BattleClient {
           int xcoord = (int) coords.charAt(0) - 65;
           int ycoord = Integer.parseInt(coords.charAt(1) + "");
 
-          System.out.println("Enemy fired at: (" + xcoord + "," + ycoord + ")");
+          System.out.println("Enemy fired at: (" + coords.charAt(0) + "," + ycoord + ")");
           boolean isHit = playerBoard.checkhit(xcoord, ycoord);
 
           //send to player 1
@@ -130,6 +129,7 @@ public class BattleClient {
       userInput.close(); 
       in.close();
       out.close();
+      input.close();
     } catch (Exception e) {
 
     }
