@@ -13,7 +13,7 @@ public class BattleServer {
   public static void main(String[] args) {
     // start game (maybe put this in another function?)
     GameBoard playerBoard = new GameBoard();
-
+    
     InetAddress ip;
     try {
       ip = InetAddress.getLocalHost();
@@ -29,15 +29,23 @@ public class BattleServer {
       System.out.println("Connection established");
       clearScreen();
 
-      playerBoard.generateBoats(4);
+      BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in)); // get user input
+      PrintWriter out = new PrintWriter(soc.getOutputStream(), true); // output to other player
+      BufferedReader in = new BufferedReader(new InputStreamReader(soc.getInputStream())); // input from other player
+
+      //get number of boats
+      System.out.println("Enter the number of ships");
+      int boatsNumber =  Integer.parseInt(userInput.readLine());
+      out.println(boatsNumber);
+
+      playerBoard.generateBoats(boatsNumber);
+
       System.out.println("\nPlayer Board: ");
       playerBoard.printBoard();
       System.out.println("\nEnemy Board: ");
       playerBoard.printEnemyBoard();
 
-      BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in)); // get user input
-      PrintWriter out = new PrintWriter(soc.getOutputStream(), true); // output to other player
-      BufferedReader in = new BufferedReader(new InputStreamReader(soc.getInputStream())); // input from other player
+      
 
       while (turn > 0) {
         // turn 0 = win/lose, turn 1 = player 1, turn 2 = player 2
@@ -69,7 +77,7 @@ public class BattleServer {
           out.println(coords);
 
           //receive response
-          String hitMiss = in .readLine();
+          String hitMiss = in.readLine();
           boolean isHit = true;
           clearScreen();
 
@@ -84,7 +92,7 @@ public class BattleServer {
           playerBoard.returnHit(xcoord, ycoord, isHit);
           
           //check if win
-          if (playerBoard.score == 4) {
+          if (playerBoard.score == boatsNumber) {
             clearScreen();
             playerBoard.matchResult(false);
             turn = 0;

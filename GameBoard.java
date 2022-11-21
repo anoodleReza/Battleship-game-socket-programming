@@ -3,7 +3,7 @@ import java.util.Random;
 public class GameBoard {
   public boolean[][] board;
   public int[][] eBoard;
-  public int score = 0, boats = 4;
+  public int score = 0, boats = 0;
 
   public GameBoard() {
     board = new boolean[10][10];
@@ -12,6 +12,7 @@ public class GameBoard {
 
   // create random boats
   void generateBoats(int num) {
+    boats = num;
     int curNum = 0;
     while (curNum < num) {
       // get random location
@@ -78,7 +79,7 @@ public class GameBoard {
       boats--;
       System.out.println("\nYour ship has been Hit");
     } else {
-      System.out.println("\nYour ship has been Miss");
+      System.out.println("\nYour ship has been Missed");
     }
     return (isHit);
   }

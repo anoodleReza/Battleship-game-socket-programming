@@ -4,11 +4,9 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
-import javax.print.DocFlavor.STRING;
-
 public class BattleClient {
 
-  public static int turn = 2;
+  public static int turn = -1;
   public static void main(String[] args) {
     GameBoard playerBoard = new GameBoard();
     boolean winCondition = false;
@@ -24,7 +22,17 @@ public class BattleClient {
       Socket soc = new Socket(ipaddress, 9806);
       clearScreen();
 
-      playerBoard.generateBoats(4);
+      BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
+      PrintWriter out = new PrintWriter(soc.getOutputStream(), true);
+      BufferedReader in = new BufferedReader(new InputStreamReader(soc.getInputStream()));
+
+      //get numebr of boats
+      System.out.println("Waiting for host to set-up game");
+      int boatsNumber = Integer.parseInt(in.readLine());
+      System.out.println(boatsNumber);
+      turn = 2;
+
+      playerBoard.generateBoats(boatsNumber);
 
       //print boards
       System.out.println("\nPlayer Board: ");
@@ -32,9 +40,6 @@ public class BattleClient {
       System.out.println("\nEnemy Board: ");
       playerBoard.printEnemyBoard();
 
-      BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
-      PrintWriter out = new PrintWriter(soc.getOutputStream(), true);
-      BufferedReader in = new BufferedReader(new InputStreamReader(soc.getInputStream()));
 
       while (turn > 0) {
         //turn 0 = win/lose, turn 1 = player 1, turn 2 = player 2
@@ -80,7 +85,7 @@ public class BattleClient {
           playerBoard.returnHit(xcoord, ycoord, isHit);
           
           //check if win
-          if (playerBoard.score == 4) {
+          if (playerBoard.score == boatsNumber) {
             clearScreen();
             winCondition = true;
             turn = 0;
