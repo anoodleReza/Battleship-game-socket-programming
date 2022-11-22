@@ -31,7 +31,7 @@ public class GameBoard {
 
   void printBoard() {
     // print column labels
-    System.out.println("  0 1 2 3 4 5 6 7 8 9");
+    System.out.println("  0 1 2 3 4 5 6 7 8 9 \t \t  0 1 2 3 4 5 6 7 8 9");
     for (int i = 0; i < board.length; i++) {
       // print row labels
       System.out.print((char)('@' + i + 1) + " ");
@@ -42,15 +42,9 @@ public class GameBoard {
           System.out.print("- ");
         }
       }
-      System.out.println();
-    }
-  }
-
-  void printEnemyBoard() {
-    // print column labels
-    System.out.println("  0 1 2 3 4 5 6 7 8 9");
-    for (int i = 0; i < board.length; i++) {
-      // print row labels
+      System.out.print('\t');
+      System.out.print('\t');
+      //enemy
       System.out.print((char)('@' + i + 1) + " ");
       for (int j = 0; j < board.length; j++) {
         switch (eBoard[i][j]) {
@@ -110,5 +104,12 @@ public class GameBoard {
 
   void addscore() {
     score++;
+  }
+
+  public static void main(String[] args) {
+    GameBoard player = new GameBoard();
+    player.generateBoats(2);
+    player.printBoard();
+
   }
 }

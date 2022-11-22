@@ -40,12 +40,8 @@ public class BattleServer {
 
       playerBoard.generateBoats(boatsNumber);
 
-      System.out.println("\nPlayer Board: ");
-      playerBoard.printBoard();
-      System.out.println("\nEnemy Board: ");
-      playerBoard.printEnemyBoard();
-
-      
+      System.out.println("\nPlayer Board \t\t\tEnemyBoard: ");
+      playerBoard.printBoard();      
 
       while (turn > 0) {
         // turn 0 = win/lose, turn 1 = player 1, turn 2 = player 2
@@ -98,10 +94,8 @@ public class BattleServer {
             turn = 0;
           } else {
             //print enemy boards again
-            System.out.println("\nPlayer Board: ");
+            System.out.println("\nPlayer Board \t\t\tEnemyBoard: ");
             playerBoard.printBoard();
-            System.out.println("\nEnemy Board: ");
-            playerBoard.printEnemyBoard();
 
             //end turn
             turn = 2;
@@ -139,12 +133,10 @@ public class BattleServer {
       userInput.close(); 
       in .close();
       out.close();
-      soc.close();
       ss.close();
     } catch (Exception e) {
       e.printStackTrace();
     }
-
   }
 
   public static void clearScreen() {

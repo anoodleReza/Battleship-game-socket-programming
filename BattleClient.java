@@ -34,11 +34,8 @@ public class BattleClient {
       playerBoard.generateBoats(boatsNumber);
 
       //print boards
-      System.out.println("\nPlayer Board: ");
+      System.out.println("\nPlayer Board \t\t\tEnemyBoard: ");
       playerBoard.printBoard();
-      System.out.println("\nEnemy Board: ");
-      playerBoard.printEnemyBoard();
-
 
       while (turn > 0) {
         //turn 0 = win/lose, turn 1 = player 1, turn 2 = player 2
@@ -90,10 +87,8 @@ public class BattleClient {
             turn = 0;
           } else {
             //print enemy boards again
-            System.out.println("\nPlayer Board: ");
+            System.out.println("\nPlayer Board \t\t\tEnemyBoard: ");
             playerBoard.printBoard();
-            System.out.println("\nEnemy Board: ");
-            playerBoard.printEnemyBoard();
 
             //end turn
             turn = 2;
