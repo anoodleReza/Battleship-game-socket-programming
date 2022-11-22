@@ -27,7 +27,6 @@ public class BattleServer {
       ServerSocket ss = new ServerSocket(9806);
       Socket soc = ss.accept();
       System.out.println("Connection established");
-      clearScreen();
 
       BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in)); // get user input
       PrintWriter out = new PrintWriter(soc.getOutputStream(), true); // output to other player

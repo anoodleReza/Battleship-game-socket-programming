@@ -8,6 +8,20 @@ public class GameBoard {
   public GameBoard() {
     board = new boolean[10][10];
     eBoard = new int[10][10]; //0=nothing 1=miss 2=hit
+    System.out.println(
+      "====================================================================================\r\n" +    
+      "\r\n\r\n" +
+      "\tWelcome To Battleships" + 
+      "\r\n\r\n\r\n" +
+      "\tHow to Play:" + 
+      "\r\n\r\n" +
+      "\t1. Enter Coordinates as [Letter][Number], For example: A9" + 
+      "\r\n\r\n" +
+      "\t2. Guess all the Enemy Battleship Loations before the enemy does" +
+      "\r\n\r\n\r\n" + 
+      "====================================================================================\r\n" +    
+      "\r\n\r\n"
+      );
   }
 
   // create random boats
@@ -92,13 +106,27 @@ public class GameBoard {
     System.out.flush();
 
     if (hasLost) {
-      System.out.println();
-      System.out.println("\nDefeat: The enemy has sunken all of your ships");
-      System.out.println();
+      System.out.println(
+        "====================================================================================\r\n" +    
+        "\r\n\r\n" +
+        "\tDefeat" + 
+        "\r\n\r\n\r\n" +
+        "\tThe enemy has sunken all of your ships" + 
+        "\r\n\r\n" + 
+        "====================================================================================\r\n" +    
+        "\r\n\r\n"
+        );
     } else {
-      System.out.println();
-      System.out.println("\nVictory: You have sunken all enemy ships");
-      System.out.println();
+      System.out.println(
+        "====================================================================================\r\n" +    
+        "\r\n\r\n" +
+        "\tVictory" + 
+        "\r\n\r\n\r\n" +
+        "\tYou have sunken all enemy ships" + 
+        "\r\n\r\n\r\n" +
+        "====================================================================================\r\n" +    
+        "\r\n\r\n"
+        );
     }
   }
 

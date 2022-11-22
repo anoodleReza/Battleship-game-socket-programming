@@ -19,13 +19,12 @@ public class BattleClient {
       //connect to host
       System.out.println("Client Started");
       Socket soc = new Socket(ipaddress, 9806);
-      clearScreen();
 
       BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
       PrintWriter out = new PrintWriter(soc.getOutputStream(), true);
       BufferedReader in = new BufferedReader(new InputStreamReader(soc.getInputStream()));
 
-      //get numebr of boats
+      //get number of boats
       System.out.println("Waiting for host to set-up game");
       int boatsNumber = Integer.parseInt(in.readLine());
       System.out.println(boatsNumber);
