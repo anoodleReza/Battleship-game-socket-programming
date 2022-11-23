@@ -9,7 +9,7 @@ public class BattleClient {
   public static int turn = -1;
   public static void main(String[] args) {
     GameBoard playerBoard = new GameBoard();
-    boolean winCondition = false;
+    boolean winCondition = true;
 
     Scanner input = new Scanner(System.in); 
     System.out.println("Enter the Server IP Address");
@@ -82,6 +82,7 @@ public class BattleClient {
           //check if win
           if (playerBoard.score == boatsNumber) {
             clearScreen();
+            playerBoard.matchResult(false);
             winCondition = true;
             turn = 0;
           } else {
@@ -111,6 +112,7 @@ public class BattleClient {
 
           //check if lose
           if (playerBoard.boats == 0) {
+            winCondition = false;
             turn = 0;
           } else {
             //end turn
