@@ -11,4 +11,5 @@ RUNNING:
 USE:
 1. Client enters the Host's IP address
 2. Host decides number of Battleships
-3. Input coordinates until you win/lose
+3. Input coordinates until you win/lose. 
+(Coordinates are [Letter][Number], for example A9. The letter must be a capital letter.)
