@@ -1,4 +1,18 @@
 # Computer Network Lab Project Group 1
+## About the project
+Battleship is already widely known by people an the rules are considered quite simple. We believe that most of us are already familiar with this game. We want our project to be enjoyed by people  in general. That is why we chose battleship to be the main theme of our project.
+
+The main goal of our project is to recreate the Battleship board game using socket programming. The objective of the game is to sink the enemy’s battleships before they sink yours by inputting the correct coordinates of the enemy ships. 
+
+This program allows a player to create a battleship game server so that another player could join the game as a client by using the correct IP.  The boards for the battleships are printed to the console and locations of the battleships are randomized.
+
+### Made by:
+Reynard Pradhitya
+
+Reza Aurelio Brilliansah
+
+Ahmad Fadhil Bukhori
+
 ### Hosting / Connecting to a game
 <img width="170" alt="image" src="https://github.com/anoodleReza/Computer-Network-Lab-Project-Group-1/assets/38813206/3d0706d1-327d-4cf3-ac4c-9338bb0f1c76">
 <img width="170" alt="image" src="https://github.com/anoodleReza/Computer-Network-Lab-Project-Group-1/assets/38813206/ca16c24b-8728-46ba-9f4a-fa2ac5e1f09c">
